@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Jessica Medina · Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#1c1c1f;           /* page background */
+      --surface:#242428;      /* cards/nav background */
+      --text:#f3f4f6;         /* primary text */
+      --muted:#b3b8c5;        /* secondary text */
+      --accent:#8b5cf6;       /* purple */
+      --accent-2:#a78bfa;     /* lighter purple */
+      --border:#33343b;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;}
+    a{color:inherit}
+
+    /* NAV */
+    .nav{position:sticky;top:0;z-index:50;backdrop-filter:saturate(140%) blur(6px);background:color-mix(in oklab, var(--bg) 85%, transparent);border-bottom:1px solid var(--border)}
+    .nav-inner{max-width:1100px;margin-inline:auto;display:flex;gap:14px;align-items:center;justify-content:flex-end;padding:12px 16px}
+    .pill{background:var(--surface);border:1px solid var(--border);padding:10px 16px;border-radius:999px;color:var(--text);font-size:14px;line-height:1;font-weight:600;box-shadow:0 1px 0 #0005 inset}
+    .pill:hover{outline:2px solid color-mix(in oklab, var(--accent) 60%, transparent);}
+
+    /* LAYOUT */
+    .wrap{max-width:1100px;margin:0 auto;padding:32px 16px 72px;position:relative}
+    .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:center;min-height:70svh}
+    @media (max-width:900px){.hero{grid-template-columns:1fr;gap:20px}}
+
+    /* HEADING */
+    .eyebrow{letter-spacing:.12em;color:var(--muted);font-weight:800;font-size:14px;text-transform:uppercase;margin:0 0 10px}
+    .name{margin:0;color:var(--text);font-size:clamp(36px,6vw,56px);line-height:1.05;font-weight:800}
+    .name .accent{color:var(--accent);text-shadow:0 8px 30px color-mix(in oklab, var(--accent) 25%, transparent)}
+    .tag{margin:10px 0 18px;font-size:clamp(20px,3.6vw,32px);font-weight:800;color:#e5e7eb}
+    .sub{margin:0;max-width:56ch;color:var(--muted);font-size:16px;line-height:1.7}
+    .cta{display:flex;gap:12px;margin-top:22px}
+    .btn{background:var(--accent);border:0;color:white;font-weight:700;padding:12px 18px;border-radius:14px}
+    .btn.secondary{background:transparent;border:1px solid var(--border);color:var(--text)}
+
+    /* PHOTO CARD with arch */
+    .photo-wrap{position:relative;display:grid;place-items:end}
+    .arch{width:min(460px,100%);aspect-ratio:4/5;background:var(--surface);border:1px solid var(--border);border-radius:32px;box-shadow:0 20px 60px #0006;position:relative;padding:14px}
+    .arch-inner{height:100%;border-radius:32px 32px 28px 28px; /* fallback */
+      -webkit-mask:radial-gradient(180px 60px at 50% 0,#0000 98%,#000) top/100% 110% no-repeat,
+                   linear-gradient(#000 0 0); /* creates an arch top */
+      mask:radial-gradient(180px 60px at 50% 0,#0000 98%,#000) top/100% 110% no-repeat,
+           linear-gradient(#000 0 0);
+      overflow:hidden;border:1px solid var(--border);background:#111}
+    .arch-inner img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(105%)}
+    .dots{position:absolute;inset:auto -60px 10% auto;width:200px;height:200px;background:radial-gradient(#666 1px,#0000 1px);background-size:14px 14px;opacity:.2;border-radius:50%}
+
+    /* CAT STICKER ANIMATION (left edge) */
+    .cat{position:fixed;left:-140px;bottom:28px;width:130px;height:auto;z-index:60;pointer-events:none;filter:drop-shadow(0 8px 20px #0007)}
+    .cat.animate{animation:catSlide 5s ease-in-out 0.6s 1 both}
+    @keyframes catSlide{
+      0%{transform:translateX(0) rotate(-2deg);opacity:0}
+      10%{opacity:1}
+      35%{transform:translateX(180px) rotate(0deg)} /* peeks in */
+      65%{transform:translateX(220px) rotate(2deg)} /* playful push */
+      100%{transform:translateX(-200px) rotate(-4deg);opacity:0} /* leaves left */
+    }
+    @media (prefers-reduced-motion: reduce){
+      .cat.animate{animation:none}
+    }
+
+    /* Scroll hint */
+    .hint{position:absolute;left:50%;translate:-50% 0;bottom:-8px;color:var(--muted);font-size:13px}
+
+    /* Extra sections so page can continue */
+    section{padding:90px 0;border-top:1px solid var(--border)}
+    .projects h2,.about h2{margin:0 0 12px;font-size:28px}
+    .code{font-family:"Fira Code",ui-monospace,Menlo,Consolas,monospace;font-size:14px;color:#cbd5e1;background:#0f1115;border:1px solid #1f2430;padding:12px;border-radius:12px;overflow:auto}
+  </style>
+</head>
+<body>
+  <!-- CAT sticker (swap src with your own asset later: assets/cat.png) -->
+  <img class="cat animate" src="https://raw.githubusercontent.com/jessmed749/assets/main/cat-sticker.png" alt="cat sticker" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/3/3a/Cat03.jpg'">
+
+  <!-- NAV -->
+  <div class="nav">
+    <div class="nav-inner">
+      <a class="pill" href="#projects">My Projects</a>
+      <a class="pill" href="#experience">Work Experience</a>
+      <a class="pill" href="#contact">Contact me!</a>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div class="wrap">
+    <div class="hero">
+      <div>
+        <p class="eyebrow">Hi! my name is</p>
+        <h1 class="name"><span class="accent">JESSICA MEDINA</span></h1>
+        <div class="tag">I build reliable systems with code.</div>
+        <p class="sub">I’m a software engineer and ECE student at UT Austin, focusing on compilers, backend systems, and machine learning. I enjoy creating software that is reliable, scalable, and user‑friendly.</p>
+        <div class="cta">
+          <a href="#projects" class="btn">View Projects</a>
+          <a href="#contact" class="btn secondary">Contact</a>
+        </div>
+        <div class="hint">Scroll to continue ↓</div>
+      </div>
+
+      <div class="photo-wrap">
+        <div class="dots" aria-hidden="true"></div>
+        <figure class="arch" aria-label="Profile photo">
+          <div class="arch-inner">
+            <!-- Replace the src below with your local file, e.g. assets/profile.jpg -->
+            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=1200&auto=format&fit=crop" alt="Jessica portrait"/>
+          </div>
+        </figure>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTENT sections so user can scroll down -->
+  <section id="projects" class="projects wrap">
+    <h2>Selected Projects</h2>
+    <p class="sub">Add cards here that link to your GitHub repos or live demos. Keep each description to one or two sentences about impact.</p>
+    <pre class="code"># Example impact blurb
+Sentiment Analyzer — real‑time tweet ingestion → model scoring → dashboard.
+Stack: FastAPI, Kafka, Docker · Handled ~2k msgs/min locally.</pre>
+  </section>
+
+  <section id="experience" class="about wrap">
+    <h2>Work Experience</h2>
+    <p class="sub">Jabil — SWE Intern (Azure DevOps, multithreading). PrismaShield — content & outreach for watermarking service. Add bullets with achievements and metrics.</p>
+  </section>
+
+  <section id="contact" class="about wrap" style="padding-bottom:120px">
+    <h2>Contact</h2>
+    <p class="sub">Email: <a href="mailto:jessica@example.com">jessica@example.com</a> • LinkedIn • GitHub</p>
+  </section>
+
+  <script>
+    // If you replace the cat image with a local asset, ensure the file path is correct.
+    // Animation plays once on load and leaves the screen so scrolling continues naturally.
+  </script>
+</body>
+</html>
