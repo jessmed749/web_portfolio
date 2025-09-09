@@ -4,1072 +4,574 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Jessica Medina · Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg:#0a0a0b;           
-      --surface:#1a1a1f;      
-      --text:#f8fafc;         
-      --muted:#94a3b8;        
-      --accent:#8b5cf6;       
-      --accent-2:#a78bfa;     
-      --accent-glow:#7c3aed;
-      --border:#27272a;
-      --gradient: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 50%, #ec4899 100%);
+      --bg: #1e1e1e;
+      --surface: #2d2d30;
+      --text: #ffffff;
+      --muted: #cccccc;
+      --accent: #007aff;
+      --red: #ff5f57;
+      --yellow: #ffbd2e;
+      --green: #28ca42;
+      --folder-bg: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%);
+      --window-bg: rgba(45, 45, 48, 0.95);
+      --border: rgba(255, 255, 255, 0.1);
     }
 
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      margin:0;
-      background:var(--bg);
-      color:var(--text);
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
-      overflow-x:hidden;
+    * {
+      box-sizing: border-box;
+      -webkit-user-select: none;
+      user-select: none;
     }
-
-    /* ANIMATED BACKGROUND */
-    body::before {
-      content: '';
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
+    
+    html, body {
+      margin: 0;
+      padding: 0;
       height: 100%;
-      background: 
-        radial-gradient(circle at 20% 80%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(167, 139, 250, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 40% 40%, rgba(236, 72, 153, 0.1) 0%, transparent 50%);
-      z-index: -1;
-      animation: backgroundShift 20s ease-in-out infinite;
-    }
-
-    @keyframes backgroundShift {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.7; transform: scale(1.1); }
-    }
-
-    /* FLOATING PARTICLES */
-    .particles {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 1;
-      pointer-events: none;
-    }
-
-    .particle {
-      position: absolute;
-      width: 2px;
-      height: 2px;
-      background: var(--accent);
-      border-radius: 50%;
-      opacity: 0.6;
-      animation: float 8s linear infinite;
-    }
-
-    @keyframes float {
-      0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-      10% { opacity: 0.6; }
-      90% { opacity: 0.6; }
-      100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
-    }
-
-    /* NAV */
-    .nav{
-      position:sticky;
-      top:0;
-      z-index:50;
-      backdrop-filter:saturate(180%) blur(20px);
-      background:color-mix(in oklab, var(--bg) 80%, transparent);
-      border-bottom:1px solid var(--border);
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .nav.scrolled {
-      background:color-mix(in oklab, var(--surface) 90%, transparent);
-      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
-    }
-
-    .nav-inner{
-      max-width:1200px;
-      margin-inline:auto;
-      display:flex;
-      gap:16px;
-      align-items:center;
-      justify-content:flex-end;
-      padding:16px 24px;
-    }
-
-    .pill{
-      background:var(--surface);
-      border:1px solid var(--border);
-      padding:12px 20px;
-      border-radius:50px;
-      color:var(--text);
-      font-size:14px;
-      line-height:1;
-      font-weight:600;
-      text-decoration:none;
-      position:relative;
-      overflow:hidden;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      transform: translateY(0);
-    }
-
-    .pill::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: var(--gradient);
-      transition: left 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-      z-index: -1;
-    }
-
-    .pill:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 25px rgba(139, 92, 246, 0.3);
-      border-color: var(--accent);
-    }
-
-    .pill:hover::before {
-      left: 0;
-    }
-
-    /* LAYOUT */
-    .wrap{max-width:1200px;margin:0 auto;padding:32px 24px 72px;position:relative;z-index:10}
-    .hero{
-      display:grid;
-      grid-template-columns:1.2fr 0.8fr;
-      gap:48px;
-      align-items:center;
-      min-height:90vh;
-      padding-top:2rem;
-    }
-    @media (max-width:900px){
-      .hero{grid-template-columns:1fr;gap:32px;text-align:center}
-    }
-
-    /* TYPING ANIMATION */
-    .eyebrow{
-      letter-spacing:.15em;
-      color:var(--muted);
-      font-weight:800;
-      font-size:14px;
-      text-transform:uppercase;
-      margin:0 0 16px;
-      opacity: 0;
-      animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.3s forwards;
-    }
-
-    .name{
-      margin:0;
-      color:var(--text);
-      font-size:clamp(40px,6vw,64px);
-      line-height:1.1;
-      font-weight:900;
-      opacity: 0;
-      animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.6s forwards;
-    }
-
-    .name .accent{
-      background: var(--gradient);
-      background-clip: text;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-shadow: none;
-      position: relative;
-    }
-
-    .name .accent::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: var(--gradient);
-      filter: blur(20px);
-      opacity: 0.3;
-      z-index: -1;
-      animation: glow 3s ease-in-out infinite alternate;
-    }
-
-    @keyframes glow {
-      from { opacity: 0.3; transform: scale(1); }
-      to { opacity: 0.6; transform: scale(1.05); }
-    }
-
-    .tag{
-      margin:16px 0 24px;
-      font-size:clamp(18px,3.6vw,28px);
-      font-weight:700;
-      color:var(--muted);
-      opacity: 0;
-      animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.9s forwards;
-    }
-
-    .typewriter {
-      border-right: 3px solid var(--accent);
-      animation: typing 3s steps(40) 1.2s forwards, blink 1s infinite 1.2s;
-      white-space: nowrap;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       overflow: hidden;
-      width: 0;
     }
 
-    @keyframes typing {
-      from { width: 0; }
-      to { width: 100%; }
+    /* DESKTOP BACKGROUND */
+    .desktop {
+      width: 100vw;
+      height: 100vh;
+      background: linear-gradient(135deg, #1e1e1e 0%, #2d2d30 50%, #1a1a1a 100%);
+      position: relative;
+      display: flex;
+      flex-direction: column;
     }
 
-    @keyframes blink {
-      0%, 50% { border-color: var(--accent); }
-      51%, 100% { border-color: transparent; }
+    /* TOP BAR */
+    .top-bar {
+      height: 24px;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(20px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      font-size: 13px;
+      font-weight: 500;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     }
 
-    .sub{
-      margin:0;
-      max-width:60ch;
-      color:var(--muted);
-      font-size:18px;
-      line-height:1.7;
-      opacity: 0;
-      animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 1.2s forwards;
+    .menu-bar {
+      display: flex;
+      gap: 20px;
     }
 
-    .cta{
-      display:flex;
-      gap:16px;
-      margin-top:32px;
-      opacity: 0;
-      animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 1.5s forwards;
+    .menu-item {
+      cursor: pointer;
+      padding: 2px 8px;
+      border-radius: 4px;
+      transition: background 0.2s;
     }
 
-    @media (max-width:600px){
-      .cta{flex-direction:column;align-items:center}
+    .menu-item:hover {
+      background: rgba(255, 255, 255, 0.1);
     }
 
-    .btn{
-      background: var(--gradient);
-      border:0;
-      color:white;
-      font-weight:700;
-      padding:16px 28px;
-      border-radius:50px;
-      font-size:16px;
-      text-decoration:none;
-      position:relative;
-      overflow:hidden;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      transform: translateY(0);
-      box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
-    }
-
-    .btn::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 100%);
-      transition: left 0.5s;
-    }
-
-    .btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
-    }
-
-    .btn:hover::before {
-      left: 0;
-    }
-
-    .btn.secondary{
-      background:transparent;
-      border:2px solid var(--border);
-      color:var(--text);
-      box-shadow: none;
-    }
-
-    .btn.secondary:hover {
-      border-color:var(--accent);
-      box-shadow: 0 8px 25px rgba(139, 92, 246, 0.2);
-    }
-
-    /* PHOTO CARD */
-    .photo-wrap{
-      position:relative;
-      display:grid;
-      place-items:center;
-      opacity: 0;
-      animation: slideInRight 1s cubic-bezier(0.4, 0, 0.2, 1) 0.8s forwards;
-    }
-
-    .arch{
-      width:min(400px,90%);
-      aspect-ratio:4/5;
-      background:var(--surface);
-      border:2px solid var(--border);
-      border-radius:32px;
-      box-shadow: 
-        0 25px 80px rgba(0,0,0,0.4),
-        0 0 0 1px rgba(255,255,255,0.05) inset;
-      position:relative;
-      padding:16px;
-      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .arch:hover {
-      transform: translateY(-10px) scale(1.02);
-      box-shadow: 
-        0 35px 100px rgba(0,0,0,0.5),
-        0 0 0 1px rgba(139, 92, 246, 0.3) inset;
-    }
-
-    .arch-inner{
-      height:100%;
-      border-radius:24px;
-      overflow:hidden;
-      border:1px solid var(--border);
-      background:var(--bg);
-      position:relative;
-    }
-
-    .arch-inner::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 80px;
-      background: var(--gradient);
-      opacity: 0.1;
-      z-index: 1;
-    }
-
-    .arch-inner img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      display:block;
-      filter:saturate(110%) contrast(105%);
-      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .arch:hover .arch-inner img {
-      transform: scale(1.05);
-      filter:saturate(120%) contrast(110%);
-    }
-
-    /* FLOATING ELEMENTS */
-    .dots{
-      position:absolute;
-      inset:auto -80px 15% auto;
-      width:200px;
-      height:200px;
-      background:radial-gradient(var(--accent) 1px,transparent 1px);
-      background-size:16px 16px;
-      opacity:.15;
-      border-radius:50%;
-      animation: rotate 20s linear infinite;
-    }
-
-    @keyframes rotate {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-
-    /* SCROLL ANIMATIONS */
-    @keyframes fadeInUp {
-      from { 
-        opacity: 0; 
-        transform: translateY(30px); 
-      }
-      to { 
-        opacity: 1; 
-        transform: translateY(0); 
-      }
-    }
-
-    @keyframes slideInRight {
-      from { 
-        opacity: 0; 
-        transform: translateX(50px); 
-      }
-      to { 
-        opacity: 1; 
-        transform: translateX(0); 
-      }
-    }
-
-    /* SCROLL HINT */
-    .scroll-indicator {
-      position: absolute;
-      left: 50%;
-      bottom: 2rem;
-      transform: translateX(-50%);
+    .status-bar {
+      font-size: 12px;
       color: var(--muted);
-      font-size: 14px;
+    }
+
+    /* DESKTOP CONTENT */
+    .desktop-content {
+      flex: 1;
+      position: relative;
+      padding: 40px;
+    }
+
+    /* FOLDER GRID */
+    .folder-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, 100px);
+      gap: 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .folder {
+      width: 80px;
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 8px;
-      opacity: 0;
-      animation: fadeIn 1s ease-out 2s forwards;
-    }
-
-    .scroll-arrow {
-      width: 2px;
-      height: 30px;
-      background: var(--gradient);
-      border-radius: 2px;
-      position: relative;
-      animation: bounce 2s infinite;
-    }
-
-    .scroll-arrow::after {
-      content: '';
-      position: absolute;
-      bottom: -5px;
-      left: -3px;
-      width: 8px;
-      height: 8px;
-      border-right: 2px solid var(--accent);
-      border-bottom: 2px solid var(--accent);
-      transform: rotate(45deg);
-    }
-
-    @keyframes bounce {
-      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-      40% { transform: translateY(-10px); }
-      60% { transform: translateY(-5px); }
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    /* PROJECT FOLDERS */
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 28px;
-      margin-top: 48px;
-    }
-
-    .project-folder {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 16px;
       cursor: pointer;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      padding: 24px;
-      border-radius: 16px;
-      position: relative;
+      padding: 8px;
+      border-radius: 8px;
+      transition: all 0.2s ease;
     }
 
-    .project-folder:hover {
-      transform: translateY(-8px);
-      background: color-mix(in oklab, var(--surface) 30%, transparent);
+    .folder:hover {
+      background: rgba(255, 255, 255, 0.1);
     }
 
     .folder-icon {
+      width: 64px;
+      height: 64px;
       position: relative;
-      width: 120px;
-      height: 90px;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      transform-style: preserve-3d;
+      transition: transform 0.3s ease;
+    }
+
+    .folder:hover .folder-icon {
+      transform: scale(1.1) rotateY(-10deg);
     }
 
     .folder-back, .folder-front {
       position: absolute;
       border-radius: 8px;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      background: var(--folder-bg);
     }
 
     .folder-back {
       width: 100%;
-      height: 70%;
+      height: 80%;
       bottom: 0;
-      background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #a855f7 100%);
-      box-shadow: 
-        0 8px 32px rgba(139, 92, 246, 0.3),
-        0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     }
 
     .folder-front {
-      width: 85%;
-      height: 75%;
-      top: 15%;
-      left: 7.5%;
-      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a78bfa 100%);
-      box-shadow: 
-        0 12px 40px rgba(139, 92, 246, 0.4),
-        0 0 0 1px rgba(255, 255, 255, 0.15) inset;
+      width: 90%;
+      height: 85%;
+      top: 8%;
+      left: 5%;
+      background: linear-gradient(135deg, #7c3aed 0%, #a855f7 50%, #ec4899 100%);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
       z-index: 2;
     }
 
     .folder-tab {
       position: absolute;
-      top: 5%;
-      left: 15%;
-      width: 35%;
-      height: 20%;
+      top: 2%;
+      left: 20%;
+      width: 30%;
+      height: 12%;
       background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
       border-radius: 4px 4px 0 0;
-      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1) inset;
       z-index: 1;
     }
 
-    .project-folder:hover .folder-front {
-      transform: translateY(-15px) rotateX(-15deg);
-      box-shadow: 
-        0 20px 60px rgba(139, 92, 246, 0.5),
-        0 0 0 1px rgba(255, 255, 255, 0.2) inset;
-    }
-
-    .project-folder:hover .folder-back {
-      transform: translateY(5px);
-      box-shadow: 
-        0 15px 50px rgba(139, 92, 246, 0.4),
-        0 0 0 1px rgba(255, 255, 255, 0.15) inset;
-    }
-
-    .project-folder:active .folder-icon {
-      transform: scale(0.95);
-    }
-
     .folder-name {
-      font-weight: 600;
-      font-size: 16px;
+      font-size: 11px;
+      font-weight: 500;
       color: var(--text);
       text-align: center;
-      line-height: 1.3;
-      max-width: 150px;
-      transition: color 0.3s ease;
+      line-height: 1.2;
+      max-width: 80px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
-    .project-folder:hover .folder-name {
-      color: var(--accent-2);
-    }
-
-    /* PROJECT MODAL */
-    .project-modal {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .project-modal.active {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .modal-backdrop {
+    /* DRAGGABLE WINDOWS */
+    .window {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.8);
-      backdrop-filter: blur(10px);
-    }
-
-    .modal-content {
-      position: relative;
-      background: var(--surface);
+      background: var(--window-bg);
+      backdrop-filter: blur(40px);
+      border-radius: 12px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
       border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 40px;
-      max-width: 600px;
+      min-width: 400px;
+      max-width: 800px;
+      min-height: 300px;
       max-height: 80vh;
-      overflow-y: auto;
-      margin: 20px;
-      box-shadow: 
-        0 25px 80px rgba(0, 0, 0, 0.6),
-        0 0 0 1px rgba(139, 92, 246, 0.2) inset;
-      transform: scale(0.9) translateY(20px);
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      opacity: 0;
+      transform: scale(0.8);
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      z-index: 1000;
+      resize: both;
+      overflow: hidden;
     }
 
-    .project-modal.active .modal-content {
-      transform: scale(1) translateY(0);
+    .window.active {
+      opacity: 1;
+      transform: scale(1);
     }
 
-    .modal-close {
-      position: absolute;
-      top: 16px;
-      right: 16px;
-      width: 40px;
-      height: 40px;
-      border: none;
-      background: var(--bg);
-      color: var(--muted);
-      border-radius: 50%;
-      font-size: 24px;
-      font-weight: 300;
-      cursor: pointer;
+    .window-header {
+      height: 36px;
+      background: rgba(255, 255, 255, 0.05);
+      border-bottom: 1px solid var(--border);
       display: flex;
       align-items: center;
-      justify-content: center;
-      transition: all 0.2s ease;
-      border: 1px solid var(--border);
+      padding: 0 16px;
+      cursor: move;
     }
 
-    .modal-close:hover {
-      background: var(--accent);
-      color: white;
-      transform: scale(1.1);
+    .window-controls {
+      display: flex;
+      gap: 8px;
     }
 
-    .project-header {
-      margin-bottom: 32px;
+    .window-control {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: transform 0.2s;
     }
 
-    .project-title {
-      font-size: 32px;
-      font-weight: 800;
-      margin: 0 0 12px;
-      background: var(--gradient);
+    .window-control:hover {
+      transform: scale(1.2);
+    }
+
+    .window-control.close {
+      background: var(--red);
+    }
+
+    .window-control.minimize {
+      background: var(--yellow);
+    }
+
+    .window-control.maximize {
+      background: var(--green);
+    }
+
+    .window-title {
+      flex: 1;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 600;
+      margin-left: -60px;
+    }
+
+    .window-content {
+      padding: 24px;
+      height: calc(100% - 36px);
+      overflow-y: auto;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    /* PROJECT WINDOW STYLING */
+    .project-title-window {
+      font-size: 24px;
+      font-weight: 700;
+      margin: 0 0 8px;
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%);
       background-clip: text;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
-    .project-subtitle {
+    .project-subtitle-window {
       color: var(--muted);
-      font-size: 18px;
+      font-size: 16px;
       margin: 0 0 20px;
     }
 
-    .project-tags {
+    .project-tags-window {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      margin-bottom: 24px;
+      margin: 16px 0;
     }
 
-    .project-tag {
-      background: color-mix(in oklab, var(--accent) 20%, transparent);
-      color: var(--accent-2);
-      padding: 6px 12px;
-      border-radius: 20px;
-      font-size: 12px;
+    .project-tag-window {
+      background: rgba(99, 102, 241, 0.2);
+      color: #a78bfa;
+      padding: 4px 12px;
+      border-radius: 16px;
+      font-size: 11px;
       font-weight: 600;
-      border: 1px solid color-mix(in oklab, var(--accent) 30%, transparent);
+      border: 1px solid rgba(99, 102, 241, 0.3);
     }
 
-    .project-description {
-      color: var(--text);
-      line-height: 1.7;
-      margin-bottom: 24px;
+    .project-description-window {
+      margin: 20px 0;
     }
 
-    .project-features {
-      margin: 24px 0;
-    }
-
-    .project-features h4 {
-      color: var(--accent-2);
-      margin: 0 0 16px;
+    .project-features-window h4 {
+      color: #a78bfa;
+      margin: 20px 0 12px;
       font-weight: 600;
     }
 
-    .project-features ul {
+    .project-features-window ul {
       list-style: none;
       padding: 0;
       margin: 0;
     }
 
-    .project-features li {
-      color: var(--muted);
-      margin-bottom: 8px;
+    .project-features-window li {
+      margin: 8px 0;
       position: relative;
       padding-left: 20px;
     }
 
-    .project-features li::before {
+    .project-features-window li::before {
       content: '▸';
       position: absolute;
       left: 0;
-      color: var(--accent);
+      color: #6366f1;
       font-weight: bold;
     }
 
-    .project-links {
+    .project-links-window {
       display: flex;
-      gap: 16px;
-      margin-top: 32px;
+      gap: 12px;
+      margin-top: 24px;
     }
 
-    .project-link {
-      background: var(--gradient);
+    .project-link-window {
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
       color: white;
       text-decoration: none;
-      padding: 12px 24px;
-      border-radius: 25px;
+      padding: 8px 16px;
+      border-radius: 20px;
       font-weight: 600;
-      font-size: 14px;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+      font-size: 12px;
+      transition: all 0.2s ease;
     }
 
-    .project-link:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
+    .project-link-window:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
     }
 
-    .project-link.secondary {
+    .project-link-window.secondary {
       background: transparent;
-      border: 2px solid var(--border);
+      border: 1px solid var(--border);
       color: var(--text);
-      box-shadow: none;
     }
 
-    .project-link.secondary:hover {
-      border-color: var(--accent);
-      box-shadow: 0 4px 15px rgba(139, 92, 246, 0.2);
+    /* TERMINAL STYLING */
+    .terminal {
+      background: #1a1a1a;
+      border-radius: 8px;
+      padding: 16px;
+      font-family: 'Fira Code', 'SF Mono', Monaco, 'Inconsolata', 'Fira Mono', monospace;
+      font-size: 13px;
+      line-height: 1.4;
+      color: #00ff00;
+      border: 1px solid #333;
     }
 
-    @media (max-width: 768px) {
-      .projects-grid {
-        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-        gap: 24px;
-      }
-      
-      .folder-icon {
-        width: 100px;
-        height: 75px;
-      }
-      
-      .modal-content {
-        padding: 24px;
-        margin: 16px;
-      }
-      
-      .project-links {
-        flex-direction: column;
-      }
+    .terminal-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 16px;
+      color: #666;
+      font-size: 12px;
     }
 
-    /* SECTIONS */
-    section{
-      padding:120px 0;
-      border-top:1px solid var(--border);
-      position:relative;
+    .terminal-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
     }
 
-    .section-title {
-      font-size: clamp(32px, 5vw, 48px);
-      font-weight: 800;
-      margin: 0 0 24px;
-      background: var(--gradient);
-      background-clip: text;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+    .terminal-dot.red { background: #ff5f57; }
+    .terminal-dot.yellow { background: #ffbd2e; }
+    .terminal-dot.green { background: #28ca42; }
+
+    .terminal-line {
+      margin: 4px 0;
+      display: flex;
+      align-items: flex-start;
     }
 
-    .code{
-      font-family:"Fira Code",ui-monospace,Menlo,Consolas,monospace;
-      font-size:14px;
-      color:#e2e8f0;
-      background:var(--surface);
-      border:1px solid var(--border);
-      padding:24px;
-      border-radius:16px;
-      overflow:auto;
-      margin-top:24px;
-      position:relative;
+    .terminal-prompt {
+      color: #00aaff;
+      margin-right: 8px;
+      flex-shrink: 0;
     }
 
-    .code::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background: var(--gradient);
-      opacity: 0.5;
+    .terminal-command {
+      color: #ffffff;
+    }
+
+    .terminal-output {
+      color: #00ff00;
+      margin-left: 20px;
+    }
+
+    .terminal-cursor {
+      background: #00ff00;
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      51%, 100% { opacity: 0; }
+    }
+
+    /* DOCK */
+    .dock {
+      position: fixed;
+      bottom: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(40px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      padding: 8px 16px;
+      display: flex;
+      gap: 8px;
+    }
+
+    .dock-item {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: var(--folder-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-size: 20px;
+    }
+
+    .dock-item:hover {
+      transform: scale(1.2) translateY(-4px);
     }
 
     /* RESPONSIVE */
     @media (max-width: 768px) {
-      .wrap { padding: 24px 16px 48px; }
-      .hero { min-height: 80vh; padding-top: 1rem; }
-      .nav-inner { padding: 12px 16px; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
+      .desktop-content {
+        padding: 20px;
+      }
+      
+      .folder-grid {
+        grid-template-columns: repeat(auto-fill, 80px);
+        gap: 16px;
+      }
+      
+      .window {
+        min-width: 300px;
+        margin: 10px;
       }
     }
   </style>
 </head>
 <body>
-  <!-- PARTICLES CONTAINER -->
-  <div class="particles" id="particles"></div>
-
-  <!-- NAV -->
-  <nav class="nav" id="navbar">
-    <div class="nav-inner">
-      <a class="pill" href="#projects">My Projects</a>
-      <a class="pill" href="#experience">Work Experience</a>
-      <a class="pill" href="#contact">Contact me!</a>
+  <div class="desktop">
+    <!-- TOP BAR -->
+    <div class="top-bar">
+      <div class="menu-bar">
+        <div class="menu-item">Jessica Medina</div>
+        <div class="menu-item">File</div>
+        <div class="menu-item">Edit</div>
+        <div class="menu-item">View</div>
+        <div class="menu-item">Window</div>
+        <div class="menu-item">Help</div>
+      </div>
+      <div class="status-bar">
+        <span id="current-time"></span>
+      </div>
     </div>
-  </nav>
 
-  <!-- HERO -->
-  <div class="wrap">
-    <div class="hero">
-      <div>
-        <p class="eyebrow">Hi! my name is</p>
-        <h1 class="name"><span class="accent">JESSICA MEDINA</span></h1>
-        <div class="tag typewriter">I build reliable systems with code.</div>
-        <p class="sub">I'm a software engineer and ECE student at UT Austin, focusing on compilers, backend systems, and machine learning. I enjoy creating software that is reliable, scalable, and user‑friendly.</p>
-        <div class="cta">
-          <a href="#projects" class="btn">View Projects</a>
-          <a href="#contact" class="btn secondary">Contact</a>
+    <!-- DESKTOP CONTENT -->
+    <div class="desktop-content">
+      <div class="folder-grid">
+        <div class="folder" data-project="sentiment">
+          <div class="folder-icon">
+            <div class="folder-back"></div>
+            <div class="folder-front"></div>
+            <div class="folder-tab"></div>
+          </div>
+          <div class="folder-name">Sentiment Analysis</div>
+        </div>
+
+        <div class="folder" data-project="robotcraft">
+          <div class="folder-icon">
+            <div class="folder-back"></div>
+            <div class="folder-front"></div>
+            <div class="folder-tab"></div>
+          </div>
+          <div class="folder-name">RobotCraft GSoC</div>
+        </div>
+
+        <div class="folder" data-project="tiggermath">
+          <div class="folder-icon">
+            <div class="folder-back"></div>
+            <div class="folder-front"></div>
+            <div class="folder-tab"></div>
+          </div>
+          <div class="folder-name">TiggerMath App</div>
+        </div>
+
+        <div class="folder" data-project="longhorn">
+          <div class="folder-icon">
+            <div class="folder-back"></div>
+            <div class="folder-front"></div>
+            <div class="folder-tab"></div>
+          </div>
+          <div class="folder-name">Longhorn Network</div>
+        </div>
+
+        <div class="folder" data-project="compiler">
+          <div class="folder-icon">
+            <div class="folder-back"></div>
+            <div class="folder-front"></div>
+            <div class="folder-tab"></div>
+          </div>
+          <div class="folder-name">Compiler</div>
+        </div>
+
+        <div class="folder" data-project="spotify">
+          <div class="folder-icon">
+            <div class="folder-back"></div>
+            <div class="folder-front"></div>
+            <div class="folder-tab"></div>
+          </div>
+          <div class="folder-name">Spotify Widget</div>
+        </div>
+
+        <div class="folder" data-project="experience">
+          <div class="folder-icon">
+            <div class="folder-back"></div>
+            <div class="folder-front"></div>
+            <div class="folder-tab"></div>
+          </div>
+          <div class="folder-name">Work Experience</div>
+        </div>
+
+        <div class="folder" data-project="contact">
+          <div class="folder-icon">
+            <div class="folder-back"></div>
+            <div class="folder-front"></div>
+            <div class="folder-tab"></div>
+          </div>
+          <div class="folder-name">Contact</div>
         </div>
       </div>
-
-      <div class="photo-wrap">
-        <div class="dots" aria-hidden="true"></div>
-        <figure class="arch" aria-label="Profile photo">
-          <div class="arch-inner">
-            <img src="assets/unnamed.jpg" alt="Jessica portrait">
-          </div>
-        </figure>
-      </div>
     </div>
 
-    <div class="scroll-indicator">
-      <span>Scroll to explore</span>
-      <div class="scroll-arrow"></div>
+    <!-- DOCK -->
+    <div class="dock">
+      <div class="dock-item">💼</div>
+      <div class="dock-item">📧</div>
+      <div class="dock-item">🔗</div>
     </div>
   </div>
 
-  <!-- CONTENT sections -->
-  <section id="projects" class="projects wrap">
-    <h2 class="section-title">My Projects</h2>
-    <p class="sub">Click on any project folder to explore the details</p>
-    
-    <div class="projects-grid">
-      <div class="project-folder" data-project="sentiment">
-        <div class="folder-icon">
-          <div class="folder-back"></div>
-          <div class="folder-front"></div>
-          <div class="folder-tab"></div>
-        </div>
-        <span class="folder-name">Real-Time Sentiment Analysis Pipeline</span>
-      </div>
-
-      <div class="project-folder" data-project="robotcraft">
-        <div class="folder-icon">
-          <div class="folder-back"></div>
-          <div class="folder-front"></div>
-          <div class="folder-tab"></div>
-        </div>
-        <span class="folder-name">RobotCraft - Google Summer of Code</span>
-      </div>
-
-      <div class="project-folder" data-project="tiggermath">
-        <div class="folder-icon">
-          <div class="folder-back"></div>
-          <div class="folder-front"></div>
-          <div class="folder-tab"></div>
-        </div>
-        <span class="folder-name">TiggerMath Educational App</span>
-      </div>
-
-      <div class="project-folder" data-project="longhorn">
-        <div class="folder-icon">
-          <div class="folder-back"></div>
-          <div class="folder-front"></div>
-          <div class="folder-tab"></div>
-        </div>
-        <span class="folder-name">Longhorn Network Platform</span>
-      </div>
-
-      <div class="project-folder" data-project="compiler">
-        <div class="folder-icon">
-          <div class="folder-back"></div>
-          <div class="folder-front"></div>
-          <div class="folder-tab"></div>
-        </div>
-        <span class="folder-name">Intermediate Compiler</span>
-      </div>
-
-      <div class="project-folder" data-project="spotify">
-        <div class="folder-icon">
-          <div class="folder-back"></div>
-          <div class="folder-front"></div>
-          <div class="folder-tab"></div>
-        </div>
-        <span class="folder-name">Spotify Vinyl Widget</span>
-      </div>
-    </div>
-
-    <!-- Project Details Modal -->
-    <div class="project-modal" id="projectModal">
-      <div class="modal-backdrop"></div>
-      <div class="modal-content">
-        <button class="modal-close" id="modalClose">×</button>
-        <div class="project-details" id="projectDetails">
-          <!-- Content will be dynamically inserted here -->
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="experience" class="about wrap">
-    <h2 class="section-title">Work Experience</h2>
-    <p class="sub">Building scalable solutions across different domains</p>
-    <div class="code">
-      <strong>Jabil · Software Engineering Intern</strong><br>
-      • Implemented CI/CD pipelines using Azure DevOps<br>
-      • Reduced deployment time by 40% through automation<br>
-      • Collaborated on microservices architecture
-    </div>
-  </section>
-
-  <section id="contact" class="about wrap" style="padding-bottom:120px">
-    <h2 class="section-title">Let's Connect</h2>
-    <p class="sub">
-      <strong>Email:</strong> <a href="mailto:jessicalmedina@utexas.edu" style="color:var(--accent)">jessica.lizmedina@gmail.com</a><br>
-      <strong>LinkedIn:</strong> <a href="#" style="color:var(--accent)">www.linkedin.com/in/jessica-medina232</a><br>
-      <strong>GitHub:</strong> <a href="#" style="color:var(--accent)">https://github.com/jessmed749</a>
-    </p>
-  </section>
-
   <script>
-    // Navbar scroll effect
-    const navbar = document.getElementById('navbar');
-    let lastScroll = 0;
-
-    window.addEventListener('scroll', () => {
-      const currentScroll = window.pageYOffset;
-      
-      if (currentScroll > 100) {
-        navbar.classList.add('scrolled');
-      } else {
-        navbar.classList.remove('scrolled');
-      }
-      
-      lastScroll = currentScroll;
-    });
-
-    // Smooth scrolling for navigation links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
-        }
+    // Update time
+    function updateTime() {
+      const now = new Date();
+      const time = now.toLocaleTimeString('en-US', { 
+        hour12: true, 
+        hour: 'numeric', 
+        minute: '2-digit' 
       });
-    });
-
-    // Create floating particles
-    function createParticles() {
-      const particlesContainer = document.getElementById('particles');
-      const particleCount = 50;
-
-      for (let i = 0; i < particleCount; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'particle';
-        
-        // Random positioning and animation delay
-        particle.style.left = Math.random() * 100 + '%';
-        particle.style.animationDelay = Math.random() * 8 + 's';
-        particle.style.animationDuration = (Math.random() * 3 + 5) + 's';
-        
-        // Random size
-        const size = Math.random() * 3 + 1;
-        particle.style.width = size + 'px';
-        particle.style.height = size + 'px';
-        
-        particlesContainer.appendChild(particle);
-      }
+      document.getElementById('current-time').textContent = time;
     }
+    setInterval(updateTime, 1000);
+    updateTime();
 
-    // Initialize particles
-    createParticles();
-
-    // Intersection Observer for scroll animations
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
-        }
-      });
-    }, observerOptions);
-
-    // Observe sections for scroll animations
-    document.querySelectorAll('section').forEach(section => {
-      section.style.opacity = '0';
-      section.style.transform = 'translateY(30px)';
-      section.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
-      observer.observe(section);
-    });
-
-    // Parallax effect for hero section
-    window.addEventListener('scroll', () => {
-      const scrolled = window.pageYOffset;
-      const hero = document.querySelector('.hero');
-      if (hero) {
-        hero.style.transform = `translateY(${scrolled * 0.1}px)`;
-      }
-    });
-
-    // Mouse movement parallax for photo
-    document.addEventListener('mousemove', (e) => {
-      const photo = document.querySelector('.arch');
-      if (photo) {
-        const x = (e.clientX / window.innerWidth) * 100;
-        const y = (e.clientY / window.innerHeight) * 100;
-        
-        photo.style.transform = `translate(${x * 0.02}px, ${y * 0.02}px)`;
-      }
-    });
-
-    // Add typing effect completion callback
-    setTimeout(() => {
-      const typewriter = document.querySelector('.typewriter');
-      if (typewriter) {
-        typewriter.style.borderRight = 'none';
-      }
-    }, 5000);
-
-    // Project folder functionality
+    // Project data
     const projectData = {
       sentiment: {
         title: "Real-Time Sentiment Analysis Pipeline",
@@ -1082,181 +584,470 @@
           "Enterprise CI/CD pipeline with GitHub Actions, automated testing, and zero-downtime deployments",
           "Intelligent MLOps workflow with weekly model retraining and automated rollout procedures",
           "Professional monitoring stack: Prometheus metrics, Grafana dashboards, and drift detection",
-          "Robust testing framework with comprehensive unit and end-to-end pipeline validation",
-          "Industry-standard observability with latency tracking and data quality monitoring"
+          "Robust testing framework with comprehensive unit and end-to-end pipeline validation"
         ],
         links: [
           { text: "GitHub Repository", url: "https://github.com/jessmed749/Sentiment_Analyzer_DeFeel", primary: true },
-          { text: "Technical Architecture", url: "https://github.com/jessmed749/Sentiment_Analyzer_DeFeel#readme", primary: false }
+          { text: "Technical Docs", url: "https://github.com/jessmed749/Sentiment_Analyzer_DeFeel#readme", primary: false }
         ]
       },
       robotcraft: {
         title: "RobotCraft - Google Summer of Code 2024",
-        subtitle: "Open-source educational platform for 10,000+ global users",
-        tags: ["Google Summer of Code", "Team Leadership", "Open Source", "Game Development", "Catrobat", "Mentorship"],
-        description: "Selected from thousands of global applicants for Google's prestigious Summer of Code program. Led cross-functional development team to create an educational programming game now integrated into the official Catrobat ecosystem, impacting children's STEM education worldwide.",
+        subtitle: "Open-source educational platform for global users",
+        tags: ["Google Summer of Code", "Team Leadership", "Open Source", "Game Development", "Catrobat"],
+        description: "Selected from thousands of global applicants for Google's prestigious Summer of Code program. Led cross-functional development team to create an educational programming game now integrated into the official Catrobat ecosystem.",
         features: [
           "Competitive selection from global talent pool for Google Summer of Code 2024",
           "Architected scalable modular programming framework with reusable educational components",
           "Technical leadership: managed distributed team, GitHub workflows, and code reviews",
           "Implemented progressive learning system with four sophisticated gameplay levels",
           "Ensured enterprise-grade open-source compliance (AGPL v3 / CC BY-SA 4.0)",
-          "Applied agile software engineering: functional specifications, iterative development, QA testing",
-          "Mentored junior developers and integrated community contributions at scale"
+          "Applied agile software engineering: functional specifications, iterative development"
         ],
         links: [
           { text: "GitHub Repository", url: "https://github.com/jessmed749/RobotCraft-GSoC-2024", primary: true },
-          { text: "Project Demo", url: "https://www.youtube.com/watch?v=PyYxXsV2D7E", primary: false }
+          { text: "Demo Video", url: "https://www.youtube.com/watch?v=PyYxXsV2D7E", primary: false }
         ]
       },
       tiggermath: {
         title: "TiggerMath Educational Platform",
-        subtitle: "National award-winning mobile app reaching thousands of students",
-        tags: ["React Native", "Mobile Development", "SQL", "EdTech", "National Recognition", "STEM Innovation"],
-        description: "Developed and launched a comprehensive educational mobile platform that gained national recognition for innovation in STEM education. Selected for Latin America's premier entrepreneurship showcase, demonstrating both technical excellence and business impact.",
+        subtitle: "National award-winning mobile app",
+        tags: ["React Native", "Mobile Development", "SQL", "EdTech", "National Recognition"],
+        description: "Developed and launched a comprehensive educational mobile platform that gained national recognition for innovation in STEM education. Selected for Latin America's premier entrepreneurship showcase.",
         features: [
           "Cross-platform mobile application built with React Native and advanced Thunkable integration",
-          "Enterprise-grade user authentication and secure data management with optimized SQL architecture",
-          "Engaging interactive learning modules designed with child psychology and pedagogy principles",
+          "Enterprise-grade user authentication and secure data management with optimized SQL",
+          "Engaging interactive learning modules designed with child psychology principles",
           "National recognition: selected as finalist for PrepaTec Apps national competition",
-          "Featured at INC Mty, Latin America's largest entrepreneurship and innovation conference",
-          "Recognized by industry leaders for educational technology innovation and social impact",
-          "Scalable architecture supporting thousands of concurrent users and learning sessions"
+          "Featured at INC Mty, Latin America's largest entrepreneurship conference",
+          "Scalable architecture supporting thousands of concurrent users"
         ],
         links: [
-          { text: "Media Coverage", url: "https://conecta.tec.mx/es/noticias/ciudad-juarez/institucion/conoce-la-app-que-los-llevo-al-nacional-de-prepapps-2020", primary: true },
-          { text: "Competition Results", url: "https://conecta.tec.mx/es/noticias/ciudad-juarez/institucion/conoce-la-app-que-los-llevo-al-nacional-de-prepapps-2020", primary: false }
+          { text: "Media Coverage", url: "https://conecta.tec.mx/es/noticias/ciudad-juarez/institucion/conoce-la-app-que-los-llevo-al-nacional-de-prepapps-2020", primary: true }
         ]
       },
       longhorn: {
         title: "Longhorn Network Social Platform",
-        subtitle: "Advanced algorithmic social network with graph-based architecture",
-        tags: ["Java", "Advanced Algorithms", "Graph Theory", "Concurrency", "System Design", "Social Networks"],
-        description: "Engineered a sophisticated social networking platform demonstrating mastery of advanced computer science concepts. Implemented cutting-edge algorithms for relationship optimization and real-time communication, showcasing expertise in complex system architecture.",
+        subtitle: "Advanced algorithmic social network",
+        tags: ["Java", "Advanced Algorithms", "Graph Theory", "Concurrency", "System Design"],
+        description: "Engineered a sophisticated social networking platform demonstrating mastery of advanced computer science concepts. Implemented cutting-edge algorithms for relationship optimization and real-time communication.",
         features: [
-          "Advanced stable matching implementation using Gale-Shapley algorithm for optimal roommate pairing",
-          "Intelligent referral system powered by Dijkstra's shortest path algorithm for connection optimization",
-          "Sophisticated weighted graph architecture with dynamic relationship modeling and edge optimization",
-          "High-performance multithreaded architecture supporting concurrent user interactions and real-time messaging",
+          "Advanced stable matching implementation using Gale-Shapley algorithm",
+          "Intelligent referral system powered by Dijkstra's shortest path algorithm",
+          "Sophisticated weighted graph architecture with dynamic relationship modeling",
+          "High-performance multithreaded architecture supporting concurrent interactions",
           "Thread-safe data structures ensuring consistency in high-concurrency environments",
-          "Professional Swing-based visualization system for complex graph relationship mapping",
-          "Optimized network algorithms including Prim's minimum spanning tree for connection efficiency"
+          "Professional Swing-based visualization system for graph relationship mapping"
         ],
         links: [
-          { text: "GitHub Repository", url: "https://github.com/jessmed749/Longhorn-Network", primary: true },
-          { text: "Algorithm Analysis", url: "https://github.com/jessmed749/Longhorn-Network#readme", primary: false }
+          { text: "GitHub Repository", url: "https://github.com/jessmed749/Longhorn-Network", primary: true }
         ]
       },
       compiler: {
         title: "Advanced Compiler Implementation",
-        subtitle: "Custom programming language with sophisticated optimization engine",
-        tags: ["Compiler Design", "Language Theory", "Java", "Parsing", "Code Generation", "System Programming"],
-        description: "Developed a comprehensive compiler from scratch, demonstrating deep understanding of programming language theory and system-level programming. Implemented advanced optimization techniques and error handling for a complete language processing pipeline.",
+        subtitle: "Custom programming language with optimization",
+        tags: ["Compiler Design", "Language Theory", "Java", "Parsing", "Code Generation"],
+        description: "Developed a comprehensive compiler from scratch, demonstrating deep understanding of programming language theory and system-level programming.",
         features: [
-          "Complete lexical analysis engine with sophisticated tokenization and preprocessing",
-          "Advanced recursive descent parser with comprehensive error recovery and diagnostic reporting",
-          "Optimized abstract syntax tree generation with semantic analysis and type checking",
+          "Complete lexical analysis engine with sophisticated tokenization",
+          "Advanced recursive descent parser with comprehensive error recovery",
+          "Optimized abstract syntax tree generation with semantic analysis",
           "Intelligent intermediate code generation with multiple optimization passes",
-          "Professional symbol table management with efficient scope resolution and memory allocation",
-          "Robust error handling system with detailed diagnostic reporting and recovery strategies",
-          "Support for complex language constructs: functions, control flow, data structures, and recursion"
+          "Professional symbol table management with efficient scope resolution",
+          "Support for complex language constructs and control flow"
         ],
         links: [
-          { text: "GitHub Repository", url: "https://github.com/jessmed749/Intermediate-Compiler", primary: true },
-          { text: "Language Documentation", url: "https://github.com/jessmed749/Intermediate-Compiler#readme", primary: false }
+          { text: "GitHub Repository", url: "https://github.com/jessmed749/Intermediate-Compiler", primary: true }
         ]
       },
       spotify: {
         title: "Spotify Vinyl Widget",
-        subtitle: "Professional desktop application with real-time API integration",
-        tags: ["Flask", "Electron", "Spotify API", "Full-Stack", "Desktop Development", "Real-Time Systems"],
-        description: "Crafted an elegant desktop companion application showcasing modern full-stack development practices. Integrated real-time APIs with beautiful UI design, demonstrating expertise in cross-platform development and user experience design.",
+        subtitle: "Professional desktop application",
+        tags: ["Flask", "Electron", "Spotify API", "Full-Stack", "Desktop Development"],
+        description: "Crafted an elegant desktop companion application showcasing modern full-stack development practices. Integrated real-time APIs with beautiful UI design.",
         features: [
-          "Professional Flask backend with robust Spotify Web API integration using industry-standard Spotipy",
-          "Stunning neumorphic design with smooth animations and responsive circular album artwork",
-          "Complete playback control system: play/pause, track navigation, and volume management",
+          "Professional Flask backend with robust Spotify Web API integration",
+          "Stunning neumorphic design with smooth animations and responsive artwork",
+          "Complete playback control system: play/pause, track navigation",
           "Advanced desktop integration: always-on-top, frameless window with drag functionality",
-          "Intelligent real-time synchronization with 3.5-second refresh cycles for seamless user experience",
-          "Modern tech stack: Flask backend, responsive HTML/CSS/JS frontend, Electron desktop wrapper",
-          "Professional UI/UX with transparent backgrounds and floating window aesthetics"
+          "Intelligent real-time synchronization with seamless user experience",
+          "Modern tech stack: Flask backend, HTML/CSS/JS frontend, Electron wrapper"
         ],
         links: [
-          { text: "GitHub Repository", url: "https://github.com/jessmed749/Spotify-Vinyl-Widget", primary: true },
-          { text: "Setup Guide", url: "https://github.com/jessmed749/Spotify-Vinyl-Widget#readme", primary: false }
+          { text: "GitHub Repository", url: "https://github.com/jessmed749/Spotify-Vinyl-Widget", primary: true }
         ]
+      },
+      experience: {
+        title: "Work Experience",
+        subtitle: "Professional Engineering Experience",
+        isTerminal: true,
+        content: `
+          <div class="terminal">
+            <div class="terminal-header">
+              <div class="terminal-dot red"></div>
+              <div class="terminal-dot yellow"></div>
+              <div class="terminal-dot green"></div>
+              <span>jessica@portfolio:~$</span>
+            </div>
+            <div class="terminal-line">
+              <span class="terminal-prompt">jessica@portfolio:~$</span>
+              <span class="terminal-command">cd /work-experience</span>
+            </div>
+            <div class="terminal-line">
+              <span class="terminal-prompt">jessica@portfolio:/work-experience$</span>
+              <span class="terminal-command">cat jabil-internship.txt</span>
+            </div>
+            <div class="terminal-output">
+              <strong style="color: #00aaff;">Jabil, Austin, TX</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #ffbd2e;">May 2024 – Aug 2024</span><br>
+              <strong style="color: #28ca42;">Cloud and Infrastructure Software Engineering Intern</strong><br><br>
+            </div>
+            <div class="terminal-line">
+              <span class="terminal-prompt">jessica@portfolio:/work-experience$</span>
+              <span class="terminal-command">./achievements.sh --list</span>
+            </div>
+            <div class="terminal-output">
+              <span style="color: #00ff00;">✓</span> Developed and implemented CI/CD pipeline using Azure DevOps, Python, Docker, and YAML<br>
+              <span style="color: #00ff00;">✓</span> Automated 100+ daily deployments across 3+ factory environments<br>
+              <span style="color: #00ff00;">✓</span> Reduced deployment times by <span style="color: #ffbd2e;">83%</span><br><br>
+              <span style="color: #00ff00;">✓</span> Engineered real-time error detection and alert system using Python and Azure Power Automate<br>
+              <span style="color: #00ff00;">✓</span> Reduced aging test slots by <span style="color: #ffbd2e;">60%</span> preventing potential yield losses<br>
+              <span style="color: #00ff00;">✓</span> Ensured high system reliability and prevented downtime<br><br>
+              <span style="color: #00ff00;">✓</span> Collaborated with cross-functional teams on functional specifications<br>
+              <span style="color: #00ff00;">✓</span> Developed comprehensive test plans ensuring error-free operations<br>
+              <span style="color: #00ff00;">✓</span> Streamlined workflows for developer teams<br>
+            </div>
+            <div class="terminal-line">
+              <span class="terminal-prompt">jessica@portfolio:/work-experience$</span>
+              <span class="terminal-command">echo "Impact: Production systems serving millions of devices" | lolcat</span>
+            </div>
+            <div class="terminal-output">
+              <span style="background: linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Impact: Production systems serving millions of devices</span>
+            </div>
+            <div class="terminal-line">
+              <span class="terminal-prompt">jessica@portfolio:/work-experience$</span>
+              <span class="terminal-cursor">&nbsp;</span>
+            </div>
+          </div>
+        `
+      },
+      contact: {
+        title: "Contact Information",
+        subtitle: "Let's Connect!",
+        content: `
+          <div style="text-align: center; padding: 20px;">
+            <h3 style="color: #a78bfa; margin-bottom: 24px;">Get In Touch</h3>
+            <div style="display: flex; flex-direction: column; gap: 16px; align-items: center;">
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <span style="font-size: 20px;">📧</span>
+                <a href="mailto:jessica.lizmedina@gmail.com" style="color: #00aaff; text-decoration: none;">jessica.lizmedina@gmail.com</a>
+              </div>
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <span style="font-size: 20px;">💼</span>
+                <a href="#" style="color: #00aaff; text-decoration: none;">LinkedIn Profile</a>
+              </div>
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <span style="font-size: 20px;">🔗</span>
+                <a href="#" style="color: #00aaff; text-decoration: none;">GitHub Portfolio</a>
+              </div>
+            </div>
+          </div>
+        `
       }
     };
 
-    // Project folder click handlers
-    document.querySelectorAll('.project-folder').forEach(folder => {
+    // Window management
+    let windowZIndex = 1000;
+    let activeWindows = [];
+
+    function createWindow(project) {
+      const window = document.createElement('div');
+      window.className = 'window';
+      window.style.left = `${Math.random() * (window.innerWidth - 500)}px`;
+      window.style.top = `${Math.random() * (window.innerHeight - 400) + 50}px`;
+      window.style.zIndex = ++windowZIndex;
+
+      const header = document.createElement('div');
+      header.className = 'window-header';
+      
+      header.innerHTML = `
+        <div class="window-controls">
+          <div class="window-control close" onclick="closeWindow(this)"></div>
+          <div class="window-control minimize" onclick="minimizeWindow(this)"></div>
+          <div class="window-control maximize" onclick="maximizeWindow(this)"></div>
+        </div>
+        <div class="window-title">${project.title}</div>
+      `;
+
+      const content = document.createElement('div');
+      content.className = 'window-content';
+
+      if (project.isTerminal) {
+        content.innerHTML = project.content;
+      } else if (project.content) {
+        content.innerHTML = project.content;
+      } else {
+        const tagsHTML = project.tags ? project.tags.map(tag => 
+          `<span class="project-tag-window">${tag}</span>`
+        ).join('') : '';
+        
+        const featuresHTML = project.features ? project.features.map(feature => 
+          `<li>${feature}</li>`
+        ).join('') : '';
+        
+        const linksHTML = project.links ? project.links.map(link => 
+          `<a href="${link.url}" class="project-link-window ${link.primary ? '' : 'secondary'}" target="_blank">${link.text}</a>`
+        ).join('') : '';
+
+        content.innerHTML = `
+          <h3 class="project-title-window">${project.title}</h3>
+          <p class="project-subtitle-window">${project.subtitle}</p>
+          ${tagsHTML ? `<div class="project-tags-window">${tagsHTML}</div>` : ''}
+          <div class="project-description-window">
+            <p>${project.description}</p>
+          </div>
+          ${featuresHTML ? `
+            <div class="project-features-window">
+              <h4>Key Features</h4>
+              <ul>${featuresHTML}</ul>
+            </div>
+          ` : ''}
+          ${linksHTML ? `<div class="project-links-window">${linksHTML}</div>` : ''}
+        `;
+      }
+
+      window.appendChild(header);
+      window.appendChild(content);
+      document.body.appendChild(window);
+
+      // Make window draggable
+      makeDraggable(window, header);
+
+      // Show window with animation
+      setTimeout(() => {
+        window.classList.add('active');
+      }, 10);
+
+      activeWindows.push(window);
+      return window;
+    }
+
+    function makeDraggable(windowElement, dragHandle) {
+      let isDragging = false;
+      let currentX;
+      let currentY;
+      let initialX;
+      let initialY;
+
+      dragHandle.addEventListener('mousedown', dragStart);
+
+      function dragStart(e) {
+        if (e.target.classList.contains('window-control')) return;
+        
+        initialX = e.clientX - windowElement.offsetLeft;
+        initialY = e.clientY - windowElement.offsetTop;
+
+        if (e.target === dragHandle) {
+          isDragging = true;
+          windowElement.style.zIndex = ++windowZIndex;
+        }
+
+        document.addEventListener('mousemove', dragMove);
+        document.addEventListener('mouseup', dragEnd);
+      }
+
+      function dragMove(e) {
+        if (isDragging) {
+          e.preventDefault();
+          currentX = e.clientX - initialX;
+          currentY = e.clientY - initialY;
+
+          // Keep window within viewport bounds
+          const maxX = window.innerWidth - windowElement.offsetWidth;
+          const maxY = window.innerHeight - windowElement.offsetHeight;
+          
+          currentX = Math.max(0, Math.min(currentX, maxX));
+          currentY = Math.max(24, Math.min(currentY, maxY)); // Account for top bar
+
+          windowElement.style.left = currentX + 'px';
+          windowElement.style.top = currentY + 'px';
+        }
+      }
+
+      function dragEnd() {
+        initialX = currentX;
+        initialY = currentY;
+        isDragging = false;
+        document.removeEventListener('mousemove', dragMove);
+        document.removeEventListener('mouseup', dragEnd);
+      }
+    }
+
+    function closeWindow(control) {
+      const window = control.closest('.window');
+      window.style.transform = 'scale(0.8)';
+      window.style.opacity = '0';
+      setTimeout(() => {
+        window.remove();
+        activeWindows = activeWindows.filter(w => w !== window);
+      }, 300);
+    }
+
+    function minimizeWindow(control) {
+      const window = control.closest('.window');
+      window.style.transform = 'scale(0.1) translateY(500px)';
+      window.style.opacity = '0';
+      setTimeout(() => {
+        window.style.display = 'none';
+      }, 300);
+    }
+
+    function maximizeWindow(control) {
+      const window = control.closest('.window');
+      const isMaximized = window.dataset.maximized === 'true';
+      
+      if (isMaximized) {
+        // Restore
+        window.style.left = window.dataset.originalLeft;
+        window.style.top = window.dataset.originalTop;
+        window.style.width = window.dataset.originalWidth;
+        window.style.height = window.dataset.originalHeight;
+        window.dataset.maximized = 'false';
+      } else {
+        // Maximize
+        window.dataset.originalLeft = window.style.left;
+        window.dataset.originalTop = window.style.top;
+        window.dataset.originalWidth = window.style.width;
+        window.dataset.originalHeight = window.style.height;
+        
+        window.style.left = '0px';
+        window.style.top = '24px';
+        window.style.width = '100vw';
+        window.style.height = 'calc(100vh - 24px)';
+        window.dataset.maximized = 'true';
+      }
+    }
+
+    // Folder click handlers
+    document.querySelectorAll('.folder').forEach(folder => {
       folder.addEventListener('click', () => {
         const projectKey = folder.dataset.project;
         const project = projectData[projectKey];
         
         if (project) {
-          openProjectModal(project);
+          createWindow(project);
         }
       });
     });
 
-    function openProjectModal(project) {
-      const modal = document.getElementById('projectModal');
-      const details = document.getElementById('projectDetails');
-      
-      // Create project details HTML
-      const tagsHTML = project.tags.map(tag => 
-        `<span class="project-tag">${tag}</span>`
-      ).join('');
-      
-      const featuresHTML = project.features.map(feature => 
-        `<li>${feature}</li>`
-      ).join('');
-      
-      const linksHTML = project.links.map(link => 
-        `<a href="${link.url}" class="project-link ${link.primary ? '' : 'secondary'}" target="_blank">${link.text}</a>`
-      ).join('');
-      
-      details.innerHTML = `
-        <div class="project-header">
-          <h3 class="project-title">${project.title}</h3>
-          <p class="project-subtitle">${project.subtitle}</p>
-          <div class="project-tags">${tagsHTML}</div>
-        </div>
-        <div class="project-description">
-          <p>${project.description}</p>
-        </div>
-        <div class="project-features">
-          <h4>Key Features</h4>
-          <ul>${featuresHTML}</ul>
-        </div>
-        <div class="project-links">${linksHTML}</div>
-      `;
-      
-      modal.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
+    // Dock functionality
+    document.querySelectorAll('.dock-item').forEach((item, index) => {
+      item.addEventListener('click', () => {
+        if (index === 0) {
+          createWindow(projectData.experience);
+        } else if (index === 1) {
+          createWindow(projectData.contact);
+        } else if (index === 2) {
+          window.open('https://github.com/jessmed749', '_blank');
+        }
+      });
+    });
 
-    function closeProjectModal() {
-      const modal = document.getElementById('projectModal');
-      modal.classList.remove('active');
-      document.body.style.overflow = 'auto';
-    }
+    // Double-click to open folder (alternative to single click)
+    document.querySelectorAll('.folder').forEach(folder => {
+      folder.addEventListener('dblclick', (e) => {
+        e.stopPropagation();
+        folder.click();
+      });
+    });
 
-    // Modal close handlers
-    document.getElementById('modalClose').addEventListener('click', closeProjectModal);
-    document.querySelector('.modal-backdrop').addEventListener('click', closeProjectModal);
-
-    // Close modal with Escape key
+    // Keyboard shortcuts
     document.addEventListener('keydown', (e) => {
+      // Cmd+W or Ctrl+W to close active window
+      if ((e.metaKey || e.ctrlKey) && e.key === 'w') {
+        e.preventDefault();
+        if (activeWindows.length > 0) {
+          const lastWindow = activeWindows[activeWindows.length - 1];
+          const closeButton = lastWindow.querySelector('.window-control.close');
+          if (closeButton) closeButton.click();
+        }
+      }
+      
+      // Escape to close all windows
       if (e.key === 'Escape') {
-        closeProjectModal();
+        activeWindows.forEach(window => {
+          const closeButton = window.querySelector('.window-control.close');
+          if (closeButton) closeButton.click();
+        });
       }
     });
 
-    // Prevent modal content clicks from closing modal
-    document.querySelector('.modal-content').addEventListener('click', (e) => {
-      e.stopPropagation();
+    // Desktop click to deselect folders
+    document.querySelector('.desktop-content').addEventListener('click', (e) => {
+      if (e.target === e.currentTarget) {
+        document.querySelectorAll('.folder').forEach(folder => {
+          folder.style.background = '';
+        });
+      }
+    });
+
+    // Folder selection
+    document.querySelectorAll('.folder').forEach(folder => {
+      folder.addEventListener('mousedown', (e) => {
+        // Clear other selections
+        document.querySelectorAll('.folder').forEach(f => {
+          f.style.background = '';
+        });
+        // Select current folder
+        folder.style.background = 'rgba(0, 122, 255, 0.3)';
+      });
+    });
+
+    // Window focus management
+    document.addEventListener('mousedown', (e) => {
+      const window = e.target.closest('.window');
+      if (window) {
+        window.style.zIndex = ++windowZIndex;
+      }
+    });
+
+    // Prevent context menu on desktop
+    document.addEventListener('contextmenu', (e) => {
+      e.preventDefault();
+    });
+
+    // Add some nice interactions
+    document.querySelectorAll('.folder').forEach(folder => {
+      folder.addEventListener('mouseenter', () => {
+        folder.style.transform = 'scale(1.05)';
+      });
+      
+      folder.addEventListener('mouseleave', () => {
+        if (folder.style.background === '') {
+          folder.style.transform = 'scale(1)';
+        }
+      });
+    });
+
+    // Animate dock on hover
+    document.querySelectorAll('.dock-item').forEach((item, index) => {
+      item.addEventListener('mouseenter', () => {
+        // Scale adjacent items
+        const prevItem = document.querySelectorAll('.dock-item')[index - 1];
+        const nextItem = document.querySelectorAll('.dock-item')[index + 1];
+        
+        if (prevItem) prevItem.style.transform = 'scale(1.1) translateY(-2px)';
+        if (nextItem) nextItem.style.transform = 'scale(1.1) translateY(-2px)';
+      });
+      
+      item.addEventListener('mouseleave', () => {
+        const prevItem = document.querySelectorAll('.dock-item')[index - 1];
+        const nextItem = document.querySelectorAll('.dock-item')[index + 1];
+        
+        if (prevItem) prevItem.style.transform = 'scale(1) translateY(0)';
+        if (nextItem) nextItem.style.transform = 'scale(1) translateY(0)';
+      });
     });
   </script>
 </body>
 </html>
+      }
