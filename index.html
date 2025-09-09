@@ -1069,6 +1069,234 @@
       opacity: 0.5;
     }
 
+    /* TERMINAL INTERFACE STYLING */
+    .terminal-window {
+      background: rgba(30, 30, 30, 0.95);
+      backdrop-filter: blur(20px);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      overflow: hidden;
+      margin-top: 24px;
+      box-shadow: 
+        0 25px 80px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+      font-family: 'Fira Code', 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+    }
+
+    .terminal-header {
+      display: flex;
+      align-items: center;
+      padding: 8px 16px;
+      background: rgba(40, 40, 40, 0.9);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(10px);
+      height: 44px;
+    }
+
+    .terminal-controls {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      margin-right: 16px;
+    }
+
+    .terminal-title {
+      font-size: 13px;
+      color: #e2e8f0;
+      font-weight: 500;
+      flex: 1;
+      text-align: center;
+      margin-left: -60px; /* Compensate for controls */
+    }
+
+    .terminal-body {
+      background: rgba(20, 20, 20, 0.9);
+      padding: 20px;
+      font-size: 13px;
+      line-height: 1.6;
+      color: #e2e8f0;
+      min-height: 300px;
+    }
+
+    .terminal-line {
+      margin-bottom: 8px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+    }
+
+    .prompt {
+      color: #22d3ee;
+      font-weight: 600;
+      margin-right: 8px;
+      flex-shrink: 0;
+    }
+
+    .command {
+      color: #a78bfa;
+      font-weight: 500;
+    }
+
+    .terminal-output {
+      margin: 12px 0 20px 0;
+      padding-left: 0;
+    }
+
+    .job-header {
+      background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(236, 72, 153, 0.1));
+      border: 1px solid rgba(139, 92, 246, 0.2);
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-bottom: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .company {
+      color: #f59e0b;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .role {
+      color: #10b981;
+      font-weight: 600;
+    }
+
+    .duration {
+      color: #94a3b8;
+      font-size: 12px;
+      margin-left: auto;
+    }
+
+    .bullet {
+      color: #8b5cf6;
+      margin-right: 8px;
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+
+    .achievement {
+      color: #e2e8f0;
+      line-height: 1.5;
+    }
+
+    .tech {
+      color: #22d3ee;
+      font-weight: 600;
+      background: rgba(34, 211, 238, 0.1);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 12px;
+    }
+
+    .highlight {
+      color: #f59e0b;
+      font-weight: 600;
+    }
+
+    .success {
+      color: #22c55e;
+      font-weight: 700;
+    }
+
+    /* Git Log Styling */
+    .git-log {
+      background: rgba(0, 0, 0, 0.3);
+      border-left: 3px solid #8b5cf6;
+      padding: 12px 16px;
+      margin: 12px 0;
+      border-radius: 0 6px 6px 0;
+    }
+
+    .git-commit {
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .git-graph {
+      color: #f59e0b;
+      font-weight: bold;
+    }
+
+    .commit-hash {
+      color: #22d3ee;
+      font-weight: 600;
+      font-size: 12px;
+    }
+
+    .commit-msg {
+      color: #e2e8f0;
+      font-size: 12px;
+    }
+
+    /* Docker Output Styling */
+    .docker-output {
+      background: rgba(0, 100, 200, 0.1);
+      border: 1px solid rgba(34, 211, 238, 0.2);
+      border-radius: 6px;
+      padding: 12px 16px;
+      margin: 12px 0;
+      font-family: 'Fira Code', monospace;
+    }
+
+    .docker-header {
+      color: #22d3ee;
+      font-weight: 700;
+      border-bottom: 1px solid rgba(34, 211, 238, 0.3);
+      padding-bottom: 8px;
+      margin-bottom: 8px;
+      font-size: 12px;
+    }
+
+    .docker-container {
+      color: #22c55e;
+      font-size: 12px;
+      margin-bottom: 4px;
+    }
+
+    /* Blinking Cursor */
+    .cursor {
+      color: #22d3ee;
+      animation: blink 1s infinite;
+      font-weight: normal;
+    }
+
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      51%, 100% { opacity: 0; }
+    }
+
+    /* Mobile Responsiveness */
+    @media (max-width: 768px) {
+      .terminal-body {
+        padding: 16px;
+        font-size: 12px;
+      }
+      
+      .job-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+      
+      .duration {
+        margin-left: 0;
+      }
+      
+      .terminal-title {
+        font-size: 12px;
+      }
+      
+      .achievement {
+        font-size: 12px;
+      }
+    }
+
     @media (max-width: 768px) {
       .ios-window {
         margin-top: 32px;
