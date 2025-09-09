@@ -880,7 +880,34 @@
           <div class="folder-front"></div>
           <div class="folder-tab"></div>
         </div>
-        <span class="folder-name">Sentiment Analysis Platform</span>
+        <span class="folder-name">Real-Time Sentiment Analysis Pipeline</span>
+      </div>
+
+      <div class="project-folder" data-project="robotcraft">
+        <div class="folder-icon">
+          <div class="folder-back"></div>
+          <div class="folder-front"></div>
+          <div class="folder-tab"></div>
+        </div>
+        <span class="folder-name">RobotCraft - Google Summer of Code</span>
+      </div>
+
+      <div class="project-folder" data-project="tiggermath">
+        <div class="folder-icon">
+          <div class="folder-back"></div>
+          <div class="folder-front"></div>
+          <div class="folder-tab"></div>
+        </div>
+        <span class="folder-name">TiggerMath Educational App</span>
+      </div>
+
+      <div class="project-folder" data-project="longhorn">
+        <div class="folder-icon">
+          <div class="folder-back"></div>
+          <div class="folder-front"></div>
+          <div class="folder-tab"></div>
+        </div>
+        <span class="folder-name">Longhorn Network Platform</span>
       </div>
 
       <div class="project-folder" data-project="compiler">
@@ -889,25 +916,16 @@
           <div class="folder-front"></div>
           <div class="folder-tab"></div>
         </div>
-        <span class="folder-name">C++ Compiler</span>
+        <span class="folder-name">Intermediate Compiler</span>
       </div>
 
-      <div class="project-folder" data-project="blockchain">
+      <div class="project-folder" data-project="spotify">
         <div class="folder-icon">
           <div class="folder-back"></div>
           <div class="folder-front"></div>
           <div class="folder-tab"></div>
         </div>
-        <span class="folder-name">Blockchain Network</span>
-      </div>
-
-      <div class="project-folder" data-project="ml">
-        <div class="folder-icon">
-          <div class="folder-back"></div>
-          <div class="folder-front"></div>
-          <div class="folder-tab"></div>
-        </div>
-        <span class="folder-name">ML Image Classifier</span>
+        <span class="folder-name">Spotify Vinyl Widget</span>
       </div>
     </div>
 
@@ -1054,75 +1072,117 @@
     // Project folder functionality
     const projectData = {
       sentiment: {
-        title: "Real-time Sentiment Analysis Platform",
-        subtitle: "AI-powered social media monitoring system",
-        tags: ["FastAPI", "Apache Kafka", "Docker", "AWS", "Python", "React"],
-        description: "A comprehensive sentiment analysis platform that processes social media streams in real-time. The system uses natural language processing to analyze sentiment patterns and provide actionable insights through an interactive dashboard.",
+        title: "Real-Time Sentiment Analysis Pipeline",
+        subtitle: "Enterprise-grade MLOps system with production infrastructure",
+        tags: ["Kafka", "FastAPI", "DistilBERT", "Docker", "Kubernetes", "Prometheus", "Grafana", "MLOps"],
+        description: "A sophisticated production-ready ML system demonstrating enterprise-level software engineering practices. Built a complete streaming analytics platform that processes real-time data with automated ML pipelines, showcasing expertise in modern DevOps and MLOps methodologies.",
         features: [
-          "Processes 2,000+ messages per minute with Apache Kafka",
-          "Real-time dashboard with live sentiment scoring",
-          "Machine learning models for emotion detection",
-          "Scalable microservices architecture",
-          "Deployed on AWS with auto-scaling capabilities",
-          "RESTful API with comprehensive documentation"
+          "Production streaming architecture with Kafka message brokers and FastAPI microservices",
+          "Advanced Kubernetes orchestration with Helm charts and horizontal pod autoscaling (HPA)",
+          "Enterprise CI/CD pipeline with GitHub Actions, automated testing, and zero-downtime deployments",
+          "Intelligent MLOps workflow with weekly model retraining and automated rollout procedures",
+          "Professional monitoring stack: Prometheus metrics, Grafana dashboards, and drift detection",
+          "Robust testing framework with comprehensive unit and end-to-end pipeline validation",
+          "Industry-standard observability with latency tracking and data quality monitoring"
         ],
         links: [
-          { text: "View Demo", url: "#", primary: true },
-          { text: "GitHub", url: "#", primary: false }
+          { text: "GitHub Repository", url: "https://github.com/jessmed749/Sentiment_Analyzer_DeFeel", primary: true },
+          { text: "Technical Architecture", url: "https://github.com/jessmed749/Sentiment_Analyzer_DeFeel#readme", primary: false }
+        ]
+      },
+      robotcraft: {
+        title: "RobotCraft - Google Summer of Code 2024",
+        subtitle: "Open-source educational platform for 10,000+ global users",
+        tags: ["Google Summer of Code", "Team Leadership", "Open Source", "Game Development", "Catrobat", "Mentorship"],
+        description: "Selected from thousands of global applicants for Google's prestigious Summer of Code program. Led cross-functional development team to create an educational programming game now integrated into the official Catrobat ecosystem, impacting children's STEM education worldwide.",
+        features: [
+          "Competitive selection from global talent pool for Google Summer of Code 2024",
+          "Architected scalable modular programming framework with reusable educational components",
+          "Technical leadership: managed distributed team, GitHub workflows, and code reviews",
+          "Implemented progressive learning system with four sophisticated gameplay levels",
+          "Ensured enterprise-grade open-source compliance (AGPL v3 / CC BY-SA 4.0)",
+          "Applied agile software engineering: functional specifications, iterative development, QA testing",
+          "Mentored junior developers and integrated community contributions at scale"
+        ],
+        links: [
+          { text: "GitHub Repository", url: "https://github.com/jessmed749/RobotCraft-GSoC-2024", primary: true },
+          { text: "Project Demo", url: "https://www.youtube.com/watch?v=PyYxXsV2D7E", primary: false }
+        ]
+      },
+      tiggermath: {
+        title: "TiggerMath Educational Platform",
+        subtitle: "National award-winning mobile app reaching thousands of students",
+        tags: ["React Native", "Mobile Development", "SQL", "EdTech", "National Recognition", "STEM Innovation"],
+        description: "Developed and launched a comprehensive educational mobile platform that gained national recognition for innovation in STEM education. Selected for Latin America's premier entrepreneurship showcase, demonstrating both technical excellence and business impact.",
+        features: [
+          "Cross-platform mobile application built with React Native and advanced Thunkable integration",
+          "Enterprise-grade user authentication and secure data management with optimized SQL architecture",
+          "Engaging interactive learning modules designed with child psychology and pedagogy principles",
+          "National recognition: selected as finalist for PrepaTec Apps national competition",
+          "Featured at INC Mty, Latin America's largest entrepreneurship and innovation conference",
+          "Recognized by industry leaders for educational technology innovation and social impact",
+          "Scalable architecture supporting thousands of concurrent users and learning sessions"
+        ],
+        links: [
+          { text: "Media Coverage", url: "https://conecta.tec.mx/es/noticias/ciudad-juarez/institucion/conoce-la-app-que-los-llevo-al-nacional-de-prepapps-2020", primary: true },
+          { text: "Competition Results", url: "https://conecta.tec.mx/es/noticias/ciudad-juarez/institucion/conoce-la-app-que-los-llevo-al-nacional-de-prepapps-2020", primary: false }
+        ]
+      },
+      longhorn: {
+        title: "Longhorn Network Social Platform",
+        subtitle: "Advanced algorithmic social network with graph-based architecture",
+        tags: ["Java", "Advanced Algorithms", "Graph Theory", "Concurrency", "System Design", "Social Networks"],
+        description: "Engineered a sophisticated social networking platform demonstrating mastery of advanced computer science concepts. Implemented cutting-edge algorithms for relationship optimization and real-time communication, showcasing expertise in complex system architecture.",
+        features: [
+          "Advanced stable matching implementation using Gale-Shapley algorithm for optimal roommate pairing",
+          "Intelligent referral system powered by Dijkstra's shortest path algorithm for connection optimization",
+          "Sophisticated weighted graph architecture with dynamic relationship modeling and edge optimization",
+          "High-performance multithreaded architecture supporting concurrent user interactions and real-time messaging",
+          "Thread-safe data structures ensuring consistency in high-concurrency environments",
+          "Professional Swing-based visualization system for complex graph relationship mapping",
+          "Optimized network algorithms including Prim's minimum spanning tree for connection efficiency"
+        ],
+        links: [
+          { text: "GitHub Repository", url: "https://github.com/jessmed749/Longhorn-Network", primary: true },
+          { text: "Algorithm Analysis", url: "https://github.com/jessmed749/Longhorn-Network#readme", primary: false }
         ]
       },
       compiler: {
-        title: "C++ Compiler Implementation",
-        subtitle: "Full compiler with lexical analysis and code generation",
-        tags: ["C++", "LLVM", "Compiler Design", "Assembly", "Parsing"],
-        description: "A complete compiler implementation that translates a custom programming language into executable machine code. Built from scratch with focus on optimization and error handling.",
+        title: "Advanced Compiler Implementation",
+        subtitle: "Custom programming language with sophisticated optimization engine",
+        tags: ["Compiler Design", "Language Theory", "Java", "Parsing", "Code Generation", "System Programming"],
+        description: "Developed a comprehensive compiler from scratch, demonstrating deep understanding of programming language theory and system-level programming. Implemented advanced optimization techniques and error handling for a complete language processing pipeline.",
         features: [
-          "Lexical analysis with custom tokenizer",
-          "Recursive descent parser with error recovery",
-          "Abstract syntax tree generation and optimization",
-          "LLVM backend for code generation",
-          "Comprehensive error reporting system",
-          "Support for functions, variables, and control flow"
+          "Complete lexical analysis engine with sophisticated tokenization and preprocessing",
+          "Advanced recursive descent parser with comprehensive error recovery and diagnostic reporting",
+          "Optimized abstract syntax tree generation with semantic analysis and type checking",
+          "Intelligent intermediate code generation with multiple optimization passes",
+          "Professional symbol table management with efficient scope resolution and memory allocation",
+          "Robust error handling system with detailed diagnostic reporting and recovery strategies",
+          "Support for complex language constructs: functions, control flow, data structures, and recursion"
         ],
         links: [
-          { text: "Documentation", url: "#", primary: true },
-          { text: "Source Code", url: "#", primary: false }
+          { text: "GitHub Repository", url: "https://github.com/jessmed749/Intermediate-Compiler", primary: true },
+          { text: "Language Documentation", url: "https://github.com/jessmed749/Intermediate-Compiler#readme", primary: false }
         ]
       },
-      blockchain: {
-        title: "Distributed Blockchain Network",
-        subtitle: "Peer-to-peer cryptocurrency with proof-of-work consensus",
-        tags: ["Go", "Cryptography", "P2P", "Networking", "Blockchain"],
-        description: "A fully functional blockchain implementation with cryptocurrency features. Includes peer-to-peer networking, transaction validation, and mining capabilities.",
+      spotify: {
+        title: "Spotify Vinyl Widget",
+        subtitle: "Professional desktop application with real-time API integration",
+        tags: ["Flask", "Electron", "Spotify API", "Full-Stack", "Desktop Development", "Real-Time Systems"],
+        description: "Crafted an elegant desktop companion application showcasing modern full-stack development practices. Integrated real-time APIs with beautiful UI design, demonstrating expertise in cross-platform development and user experience design.",
         features: [
-          "Proof-of-work consensus mechanism",
-          "P2P networking with node discovery",
-          "Digital signature verification",
-          "Transaction pool and mempool management",
-          "Merkle tree implementation for block verification",
-          "RESTful API for wallet interactions"
+          "Professional Flask backend with robust Spotify Web API integration using industry-standard Spotipy",
+          "Stunning neumorphic design with smooth animations and responsive circular album artwork",
+          "Complete playback control system: play/pause, track navigation, and volume management",
+          "Advanced desktop integration: always-on-top, frameless window with drag functionality",
+          "Intelligent real-time synchronization with 3.5-second refresh cycles for seamless user experience",
+          "Modern tech stack: Flask backend, responsive HTML/CSS/JS frontend, Electron desktop wrapper",
+          "Professional UI/UX with transparent backgrounds and floating window aesthetics"
         ],
         links: [
-          { text: "Live Network", url: "#", primary: true },
-          { text: "White Paper", url: "#", primary: false }
-        ]
-      },
-      ml: {
-        title: "Deep Learning Image Classifier",
-        subtitle: "CNN-based classification with 94% accuracy",
-        tags: ["Python", "TensorFlow", "CNNs", "Computer Vision", "MLOps"],
-        description: "Advanced image classification system using convolutional neural networks. Trained on large datasets with custom data augmentation and transfer learning techniques.",
-        features: [
-          "Custom CNN architecture with residual connections",
-          "Data augmentation pipeline for improved generalization",
-          "Transfer learning with pre-trained models",
-          "MLOps pipeline with automated training and deployment",
-          "Real-time inference API with sub-100ms latency",
-          "Comprehensive model evaluation and visualization tools"
-        ],
-        links: [
-          { text: "Try Model", url: "#", primary: true },
-          { text: "Research Paper", url: "#", primary: false }
+          { text: "GitHub Repository", url: "https://github.com/jessmed749/Spotify-Vinyl-Widget", primary: true },
+          { text: "Setup Guide", url: "https://github.com/jessmed749/Spotify-Vinyl-Widget#readme", primary: false }
         ]
       }
     };
@@ -1200,4 +1260,3 @@
   </script>
 </body>
 </html>
-
